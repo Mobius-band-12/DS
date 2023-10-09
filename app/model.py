@@ -61,6 +61,7 @@ def forecast(item_info: dict, store_info: str, stats_by_store_item: dict, stats_
         #prediction becomes "fact" of the day we forecast to become lag_1 for the next day. also it goes to forecast table as target
         last_preprocessed['sold'] = round(pred.item())
         targets.append(round(pred.item()))
+        targets = [target if target >= 0 else 0 for target in targets]
 
     return targets
 
